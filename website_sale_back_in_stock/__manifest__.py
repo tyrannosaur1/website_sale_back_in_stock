@@ -21,6 +21,7 @@
     "assets": {
         "web.assets_frontend": [
             "website_sale_back_in_stock/static/src/css/back_in_stock.css",
+            "website_sale_back_in_stock/static/src/js/availability_host_guard.js",
         ],
     },
     "price": 39.0,
