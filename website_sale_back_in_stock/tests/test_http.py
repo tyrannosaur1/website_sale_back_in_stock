@@ -64,6 +64,31 @@ class TestStockNotificationHttp(StockNotifyHelpers, HttpCase):
         self.assertIn('id="wsb_notify_email"', html)
         self.assertIn('action="/shop/stock-notify/subscribe"', html)
 
+    def test_the_shop_widget_is_replaced_not_hidden(self):
+        """The page carries our form and not the shop's own.
+
+        The shop's widget is suppressed by a view, not by a stylesheet: the
+        two nodes the shop builds its buttons and its email form in are gone
+        from the response, so the interaction that toggles them has nothing
+        left to show.
+        """
+        html = self._page()
+        self.assertIn('id="wsb_notify_email"', html)
+        self.assertNotIn('id="out_of_stock_buttons_wrapper"', html)
+        self.assertNotIn('id="stock_notification_wrapper"', html)
+        forms = self._subscribe_forms(html)
+        self.assertEqual(
+            len(forms), 1,
+            "expected exactly one subscribe form, got %d: %r" % (len(forms), forms))
+
+    def _subscribe_forms(self, html):
+        """Every "email me when it is back" affordance the page renders."""
+        return re.findall(
+            r'<form[^>]+action="[^"]*stock[-_]notif[^"]*"'
+            r'|<div[^>]+id="stock_notification_form"',
+            html,
+        )
+
     def test_the_form_is_not_offered_when_the_product_is_in_stock(self):
         """Negative control: the shelf is what decides, not the module."""
         self._set_stock(self.product, 5)
