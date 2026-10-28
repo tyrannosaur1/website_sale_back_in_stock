@@ -4,8 +4,13 @@
     <!-- The form sits under the call-to-action block of the product page, so
          it is where the buyer looks for the button that is not there. It is a
          plain form post: the feature works with JavaScript disabled, and the
-         answer is a redirect back to the page the visitor came from. -->
-    <template id="product_notify_form" inherit_id="website_sale.product"
+         answer is a redirect back to the page the visitor came from.
+
+         19 split the product page into sub-templates and a view inheritance
+         does not follow t-call, so the anchor moved from website_sale.product
+         to website_sale.cta_wrapper, which is where this block is rendered
+         from now on. -->
+    <template id="product_notify_form" inherit_id="website_sale.cta_wrapper"
               name="Back in Stock Form" priority="60">
         <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
             <t t-set="wsb_status" t-value="(request.params or {}).get('stock_notify')"/>

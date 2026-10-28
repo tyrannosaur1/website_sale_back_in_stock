@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "Back in Stock Notifications",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Variant-level back-in-stock waitlist with double opt-in, one email per "
                "subscriber and an unsubscribe link",
     "author": "ModForge",

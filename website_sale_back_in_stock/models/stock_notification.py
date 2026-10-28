@@ -77,14 +77,16 @@ class WebsiteStockNotification(models.Model):
     )
     sent_at = fields.Datetime(readonly=True, copy=False)
 
-    # 16-18 spell the constraint in `_sql_constraints`; 19 dropped that
-    # attribute, so the port declares it here instead.
-    _sql_constraints = [
-        ("product_email_website_uniq",
-         "unique(product_id, email, website_id)",
-         "This email address is already subscribed to this product on this website."),
-        ("token_uniq", "unique(token)", "The notification token must be unique."),
-    ]
+    # 19 dropped `_sql_constraints` (it warned and created nothing), so the
+    # uniqueness is declared the way this series reads it.
+    _product_email_website_uniq = models.Constraint(
+        "UNIQUE(product_id, email, website_id)",
+        "This email address is already subscribed to this product on this website.",
+    )
+    _token_uniq = models.Constraint(
+        "UNIQUE(token)",
+        "The notification token must be unique.",
+    )
 
     # ------------------------------------------------------------------
     # Creation
