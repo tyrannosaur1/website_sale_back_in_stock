@@ -5,7 +5,7 @@
         <field name="name">website.stock.notification.tree</field>
         <field name="model">website.stock.notification</field>
         <field name="arch" type="xml">
-            <tree string="Waitlist" decoration-muted="state == 'cancelled'"
+            <list string="Waitlist" decoration-muted="state == 'cancelled'"
                   decoration-success="state == 'sent'">
                 <field name="create_date"/>
                 <field name="email"/>
@@ -14,7 +14,7 @@
                 <field name="state"/>
                 <field name="sent_at"/>
                 <field name="website_id" groups="website.group_multi_website"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -75,7 +75,7 @@
     <record id="action_website_stock_notification" model="ir.actions.act_window">
         <field name="name">Back-in-Stock Waitlist</field>
         <field name="res_model">website.stock.notification</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_website_stock_notification_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">No one is waiting yet</p>
