@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- The form sits under the call-to-action block of the product page, so
+         it is where the buyer looks for the button that is not there. It is a
+         plain form post: the feature works with JavaScript disabled, and the
+         answer is a redirect back to the page the visitor came from. -->
+    <template id="product_notify_form" inherit_id="website_sale.product"
+              name="Back in Stock Form" priority="60">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
+            <t t-set="wsb_status" t-value="(request.params or {}).get('stock_notify')"/>
+            <div class="wsb-notify mt-3" t-if="product_variant and product_variant._stock_notify_form_available()">
+                <style>
+                    /* This module replaces the shop's built-in "notify me"
+                       widget: two forms asking for the same address on one
+                       page would collect the same visitor twice. The core
+                       widget stores a partner per address and sends from a
+                       single queue with no claim, so it is hidden while the
+                       waitlist is enabled -- and comes back if it is not. */
+                    #stock_notification_div,
+                    #out_of_stock_buttons_wrapper { display: none !important; }
+                </style>
+                <div class="alert alert-success" role="status" t-if="wsb_status == 'pending'">
+                    Almost there: we sent you a confirmation link. Open it and we
+                    will email you as soon as the product is available.
+                </div>
+                <div class="alert alert-success" role="status" t-if="wsb_status == 'confirmed'">
+                    You are on the list. We will email you as soon as the product is
+                    available again.
+                </div>
+                <div class="alert alert-warning" role="alert" t-if="wsb_status == 'invalid'">
+                    Please enter a valid email address.
+                </div>
+                <form method="post" action="/shop/stock-notify/subscribe"
+                      class="wsb-notify-form"
+                      t-if="wsb_status not in ('pending', 'confirmed')">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="product_id" t-att-value="product_variant.id"/>
+                    <label class="form-label fw-bold" for="wsb_notify_email">
+                        Get an email when this product is back in stock
+                    </label>
+                    <div class="input-group wsb-notify-input">
+                        <input id="wsb_notify_email" name="email" type="email"
+                               class="form-control" required="required"
+                               placeholder="you@example.com" autocomplete="email"/>
+                        <button class="btn btn-primary" type="submit">Notify me</button>
+                    </div>
+                    <p class="text-muted small mt-2 mb-0">
+                        We only email you about this product. Every message carries
+                        an unsubscribe link.
+                    </p>
+                </form>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- One page answers every link: confirmed, cancelled, and the unsubscribe
+         confirmation. It is a full page (not a fragment) because the links are
+         opened from a mail client, outside the shop. -->
+    <template id="notification_page" name="Back in Stock">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <div class="container py-5 wsb-notify-page">
+                    <div t-if="kind == 'confirmed'">
+                        <h1>You are on the list</h1>
+                        <p>
+                            We will email you as soon as
+                            <strong t-out="notification.product_id.display_name"/>
+                            is available again.
+                        </p>
+                        <a class="btn btn-primary" t-att-href="notification._stock_notify_product_url()">
+                            Back to the product
+                        </a>
+                    </div>
+                    <div t-if="kind == 'pending'">
+                        <h1>One more step</h1>
+                        <p>
+                            Open the confirmation link we sent you to start the
+                            alert for
+                            <strong t-out="notification.product_id.display_name"/>.
+                        </p>
+                    </div>
+                    <div t-if="kind == 'cancelled'">
+                        <h1>This alert was cancelled</h1>
+                        <p>
+                            Nothing will be sent for
+                            <strong t-out="notification.product_id.display_name"/>.
+                            You can subscribe again from the product page.
+                        </p>
+                    </div>
+                    <div t-if="kind == 'sent'">
+                        <h1>You have already been notified</h1>
+                        <p>
+                            The alert for
+                            <strong t-out="notification.product_id.display_name"/>
+                            has already been sent.
+                        </p>
+                    </div>
+                    <div t-if="kind == 'unsubscribe_confirm'">
+                        <h1>Unsubscribe from this alert?</h1>
+                        <p>
+                            We will stop watching
+                            <strong t-out="notification.product_id.display_name"/>
+                            for you.
+                        </p>
+                        <form method="post"
+                              t-att-action="'/shop/stock-notify/unsubscribe/%s' % notification.token">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button class="btn btn-primary" type="submit">Yes, unsubscribe</button>
+                            <a class="btn btn-link"
+                               t-att-href="notification._stock_notify_product_url()">Keep my alert</a>
+                        </form>
+                    </div>
+                    <div t-if="kind == 'unsubscribed'">
+                        <h1>You are unsubscribed</h1>
+                        <p>
+                            We will not email you about
+                            <strong t-out="notification.product_id.display_name"/>
+                            again. You can subscribe again from the product page at
+                            any time.
+                        </p>
+                        <a class="btn btn-primary" t-att-href="notification._stock_notify_product_url()">
+                            Back to the product
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

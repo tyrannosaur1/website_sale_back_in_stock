@@ -1,0 +1,12 @@
+.wsb-notify {
+    max-width: 32rem;
+}
+
+.wsb-notify .wsb-notify-input {
+    max-width: 28rem;
+}
+
+.wsb-notify-page h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}

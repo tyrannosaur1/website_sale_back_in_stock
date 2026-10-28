@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Back in Stock Notifications</title>
+</head>
+<body>
+
+<section style="max-width: 820px; margin: 0 auto; font-family: Arial, Helvetica, sans-serif; color: #222; line-height: 1.6;">
+
+    <h1 style="font-size: 28px; margin-bottom: 8px;">Back in Stock Notifications</h1>
+    <p style="font-size: 17px; color: #555; margin-top: 0;">
+        Turn a sold-out product page into a waitlist, and email each subscriber
+        once, when the variant they asked about is available again.
+    </p>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">On the product page</h2>
+    <p>
+        When a stock-managed variant cannot be sold because the shelf is empty,
+        the product page offers a single email field instead of leaving the
+        buyer with a dead end. The form is a plain HTML post: it works with
+        JavaScript disabled, it needs no extra route for the browser to call,
+        and the visitor lands back on the product page with a short
+        confirmation.
+    </p>
+    <ul>
+        <li>The form only appears while the variant is out of stock and the shop is not selling it anyway.</li>
+        <li>One row per variant: a subscriber who asked about the large size is not told about the small one.</li>
+        <li>Submitting twice with the same address keeps one entry and sends one confirmation, not two.</li>
+    </ul>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">Double opt-in</h2>
+    <p>
+        With the confirmation step on (the default), nothing is sent when the
+        product returns until the visitor has opened the link in the
+        confirmation email. A mistyped address, a shared inbox or a form filled
+        in by a bot therefore cannot be made to receive a restock notice. Turn
+        the step off if you would rather subscribe from the single form submit.
+    </p>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">One email per subscription</h2>
+    <p>
+        The scheduled sweep claims each subscription with a conditional update
+        before it builds a message, and only the run whose update matched the
+        row may send. A second run — a cron overlap, a manual send, two
+        workers — finds the row already claimed and sends nothing. If building
+        the message fails, the claim is rolled back with it, so the subscriber
+        stays on the list for the next run instead of being silently dropped.
+    </p>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">Language and links</h2>
+    <ul>
+        <li>The language is stored on the subscription, so the restock email is written in the language the visitor was browsing in, whatever the back office uses.</li>
+        <li>Both links carry an opaque token, not the record id.</li>
+        <li>The unsubscribe link opens a page with a button. Following the link does not cancel anything on its own, so a mail scanner or a link preview cannot drop a customer from the list.</li>
+    </ul>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">In the back office</h2>
+    <ul>
+        <li>Sales &gt; Configuration &gt; Back-in-Stock Waitlist lists every entry with its product, language and status.</li>
+        <li>Filters for waiting, subscribed, notified and cancelled, and grouping by product or status.</li>
+        <li>Website &gt; Settings holds the three switches: the waitlist itself, the confirmation step, and the template used for the restock email.</li>
+        <li>Internal users can read the waitlist; only administrators can change or delete entries.</li>
+    </ul>
+
+    <h2 style="font-size: 20px; margin-top: 32px;">What it does not do</h2>
+    <ul>
+        <li>It does not reserve stock, quote a date or take a pre-order. It tells a visitor that the product is back.</li>
+        <li>It does not notify about a product that is not stock-managed: a service or a consumable never has an on-hand figure to come back from.</li>
+        <li>While the waitlist is enabled it hides the shop's own “notify me” widget, which would otherwise ask for the same address a second time. Turning the waitlist off brings the built-in widget back.</li>
+        <li>Restock emails go out on the scheduled sweep, every fifteen minutes, rather than from the receipt validation: a delivery that is still being corrected cannot mail a customer about stock that never arrived.</li>
+    </ul>
+
+</section>
+
+</body>
+</html>

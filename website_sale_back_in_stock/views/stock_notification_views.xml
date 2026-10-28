@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_website_stock_notification_tree" model="ir.ui.view">
+        <field name="name">website.stock.notification.tree</field>
+        <field name="model">website.stock.notification</field>
+        <field name="arch" type="xml">
+            <tree string="Waitlist" decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'sent'">
+                <field name="create_date"/>
+                <field name="email"/>
+                <field name="product_id"/>
+                <field name="lang"/>
+                <field name="state"/>
+                <field name="sent_at"/>
+                <field name="website_id" groups="website.group_multi_website"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_website_stock_notification_form" model="ir.ui.view">
+        <field name="name">website.stock.notification.form</field>
+        <field name="model">website.stock.notification</field>
+        <field name="arch" type="xml">
+            <form string="Waitlist Entry" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="email"/>
+                            <field name="partner_id"/>
+                            <field name="lang"/>
+                        </group>
+                        <group>
+                            <field name="product_id"/>
+                            <field name="website_id"/>
+                            <field name="state"/>
+                            <field name="sent_at"/>
+                        </group>
+                    </group>
+                    <group string="Links">
+                        <group>
+                            <field name="token" readonly="1"/>
+                            <field name="create_date" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_website_stock_notification_search" model="ir.ui.view">
+        <field name="name">website.stock.notification.search</field>
+        <field name="model">website.stock.notification</field>
+        <field name="arch" type="xml">
+            <search string="Waitlist">
+                <field name="email"/>
+                <field name="product_id"/>
+                <filter name="filter_pending" string="Awaiting confirmation"
+                        domain="[('state', '=', 'pending')]"/>
+                <filter name="filter_confirmed" string="Subscribed"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_sent" string="Notified"
+                        domain="[('state', '=', 'sent')]"/>
+                <separator/>
+                <filter name="filter_cancelled" string="Cancelled"
+                        domain="[('state', '=', 'cancelled')]"/>
+                <filter name="group_product" string="Product"
+                        context="{'group_by': 'product_tmpl_id'}"/>
+                <filter name="group_state" string="Status"
+                        context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_website_stock_notification" model="ir.actions.act_window">
+        <field name="name">Back-in-Stock Waitlist</field>
+        <field name="res_model">website.stock.notification</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_website_stock_notification_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No one is waiting yet</p>
+            <p>
+                Visitors who ask to be told about an out-of-stock product appear
+                here. Entries are created from the product page, not by hand.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_website_stock_notification"
+              name="Back-in-Stock Waitlist"
+              parent="sale.menu_sales_config"
+              action="action_website_stock_notification"
+              sequence="60"/>
+
+</odoo>

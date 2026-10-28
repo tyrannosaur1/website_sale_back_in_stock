@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sent on the form submit when the website asks for a double
+             opt-in. The link carries the row's token, not its id: an id in a
+             mail is guessable and would let one visitor confirm another's
+             address. -->
+        <record id="mail_template_confirm" model="mail.template">
+            <field name="name">Back in Stock: Confirm Subscription</field>
+            <field name="model_id" ref="model_website_stock_notification"/>
+            <field name="subject">Please confirm your back-in-stock alert</field>
+            <field name="email_from">{{ object.website_id.company_id.email or '' }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html"><![CDATA[
+                <div style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;">
+                    <p>Hello,</p>
+                    <p>
+                        You asked us to tell you when
+                        <strong t-out="object.product_id.display_name"/> is available again.
+                    </p>
+                    <p>
+                        <a t-att-href="object._stock_notify_confirm_url()"
+                           style="display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;">
+                            Confirm my alert
+                        </a>
+                    </p>
+                    <p>If the button does not work, copy this address into your browser:</p>
+                    <p><a t-att-href="object._stock_notify_confirm_url()" t-out="object._stock_notify_confirm_url()"/></p>
+                    <p style="color:#666;font-size:12px;">
+                        If you did not ask for this, ignore this message; nothing is
+                        sent unless the link above is opened.
+                        <a t-att-href="object._stock_notify_unsubscribe_url()">Unsubscribe</a>
+                    </p>
+                </div>
+            ]]></field>
+        </record>
+
+        <!-- Sent by the sweep, once per subscription. The unsubscribe link is
+             part of the message body, and it points at the page that asks for
+             a confirmation click rather than cancelling on GET. -->
+        <record id="mail_template_back_in_stock" model="mail.template">
+            <field name="name">Back in Stock: Product Available</field>
+            <field name="model_id" ref="model_website_stock_notification"/>
+            <field name="subject">{{ object.product_id.display_name }} is back in stock</field>
+            <field name="email_from">{{ object.website_id.company_id.email or '' }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="body_html"><![CDATA[
+                <div style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;">
+                    <p>Hello,</p>
+                    <p>
+                        <strong t-out="object.product_id.display_name"/> is available again.
+                    </p>
+                    <p>
+                        <a t-att-href="object._stock_notify_product_url()"
+                           style="display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;">
+                            See the product
+                        </a>
+                    </p>
+                    <p style="color:#666;font-size:12px;">
+                        You are receiving this message because you asked to be told
+                        when this product came back.
+                        <a t-att-href="object._stock_notify_unsubscribe_url()">Unsubscribe</a>
+                    </p>
+                </div>
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_website_stock_notification_user,access.website.stock.notification user,model_website_stock_notification,base.group_user,1,0,0,0
+access_website_stock_notification_system,access.website.stock.notification system,model_website_stock_notification,base.group_system,1,1,1,1
