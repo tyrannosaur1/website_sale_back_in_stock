@@ -10,16 +10,6 @@
         <xpath expr="//div[@id='o_wsale_cta_wrapper']" position="after">
             <t t-set="wsb_status" t-value="(request.params or {}).get('stock_notify')"/>
             <div class="wsb-notify mt-3" t-if="product_variant and product_variant._stock_notify_form_available()">
-                <style>
-                    /* This module replaces the shop's built-in "notify me"
-                       widget: two forms asking for the same address on one
-                       page would collect the same visitor twice. The core
-                       widget stores a partner per address and sends from a
-                       single queue with no claim, so it is hidden while the
-                       waitlist is enabled -- and comes back if it is not. */
-                    #stock_notification_div,
-                    #out_of_stock_buttons_wrapper { display: none !important; }
-                </style>
                 <div class="alert alert-success" role="status" t-if="wsb_status == 'pending'">
                     Almost there: we sent you a confirmation link. Open it and we
                     will email you as soon as the product is available.
@@ -126,6 +116,27 @@
                 </div>
             </div>
         </t>
+    </template>
+
+    <!-- The shop's "notify me" widget is built in the browser: a QWeb
+         template is rendered into the empty div the shop leaves next to the
+         call to action. That div is the widget: with it gone the renderer
+         has nothing to fill and there is no button left to click. The view is
+         anchored on the shop's own node, so a rename in core breaks the
+         install instead of quietly putting a second widget on the page.
+         When this module has nothing to offer, the shop's div is rendered as
+         before and the shop's own widget comes back. -->
+    <template id="product_availability_takeover"
+              inherit_id="website_sale_stock.website_sale_stock_product"
+              name="Back in Stock Takes Over the Shop Widget" priority="20">
+        <xpath expr="//div[@id='o_wsale_cta_wrapper']/following-sibling::div[hasclass('availability_messages')]"
+               position="replace">
+            <div class="wsb-availability"
+                 t-if="product_variant and product_variant._stock_notify_form_available()">
+                <div class="text-danger fw-bold">Out of Stock</div>
+            </div>
+            <div class="availability_messages o_not_editable" t-else=""/>
+        </xpath>
     </template>
 
 </odoo>
