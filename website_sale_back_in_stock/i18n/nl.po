@@ -1,0 +1,548 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_sale_back_in_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 20.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-28 09:00+0000\n"
+"PO-Revision-Date: 2026-10-28 09:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid ""
+".\n"
+"                            You can subscribe again from the product page."
+msgstr ""
+".\n"
+"                            U kunt zich opnieuw aanmelden via de productpagina."
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,body_html:website_sale_back_in_stock.mail_template_back_in_stock
+msgid ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;\">\n"
+"                    <p>Hello,</p>\n"
+"                    <p>\n"
+"                        <strong t-out=\"object.product_id.display_name\"/> is available again.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                        <a t-att-href=\"object._stock_notify_product_url()\" style=\"display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;\">\n"
+"                            See the product\n"
+"                        </a>\n"
+"                    </p>\n"
+"                    <p style=\"color:#666;font-size:12px;\">\n"
+"                        You are receiving this message because you asked to be told\n"
+"                        when this product came back.\n"
+"                        <a t-att-href=\"object._stock_notify_unsubscribe_url()\">Unsubscribe</a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;\">\n"
+"                    <p>Hallo,</p>\n"
+"                    <p>\n"
+"                        <strong t-out=\"object.product_id.display_name\"/> is weer beschikbaar.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                        <a t-att-href=\"object._stock_notify_product_url()\" style=\"display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;\">\n"
+"                            Bekijk het product\n"
+"                        </a>\n"
+"                    </p>\n"
+"                    <p style=\"color:#666;font-size:12px;\">\n"
+"                        U ontvangt dit bericht omdat u hebt gevraagd om een bericht\n"
+"                        wanneer dit product weer op voorraad is.\n"
+"                        <a t-att-href=\"object._stock_notify_unsubscribe_url()\">Afmelden</a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,body_html:website_sale_back_in_stock.mail_template_confirm
+msgid ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;\">\n"
+"                    <p>Hello,</p>\n"
+"                    <p>\n"
+"                        You asked us to tell you when\n"
+"                        <strong t-out=\"object.product_id.display_name\"/> is available again.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                        <a t-att-href=\"object._stock_notify_confirm_url()\" style=\"display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;\">\n"
+"                            Confirm my alert\n"
+"                        </a>\n"
+"                    </p>\n"
+"                    <p>If the button does not work, copy this address into your browser:</p>\n"
+"                    <p><a t-att-href=\"object._stock_notify_confirm_url()\" t-out=\"object._stock_notify_confirm_url()\"/></p>\n"
+"                    <p style=\"color:#666;font-size:12px;\">\n"
+"                        If you did not ask for this, ignore this message; nothing is\n"
+"                        sent unless the link above is opened.\n"
+"                        <a t-att-href=\"object._stock_notify_unsubscribe_url()\">Unsubscribe</a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div style=\"margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#222;\">\n"
+"                    <p>Hallo,</p>\n"
+"                    <p>\n"
+"                        U hebt ons gevraagd u te laten weten wanneer\n"
+"                        <strong t-out=\"object.product_id.display_name\"/> weer beschikbaar is.\n"
+"                    </p>\n"
+"                    <p>\n"
+"                        <a t-att-href=\"object._stock_notify_confirm_url()\" style=\"display:inline-block;padding:10px 18px;background:#2563eb;color:#ffffff;text-decoration:none;border-radius:4px;\">\n"
+"                            Mijn melding bevestigen\n"
+"                        </a>\n"
+"                    </p>\n"
+"                    <p>Als de knop niet werkt, kopieert u dit adres naar uw browser:</p>\n"
+"                    <p><a t-att-href=\"object._stock_notify_confirm_url()\" t-out=\"object._stock_notify_confirm_url()\"/></p>\n"
+"                    <p style=\"color:#666;font-size:12px;\">\n"
+"                        Als u hier niet om hebt gevraagd, negeer dit bericht; er wordt niets\n"
+"                        verzonden tenzij de bovenstaande link wordt geopend.\n"
+"                        <a t-att-href=\"object._stock_notify_unsubscribe_url()\">Afmelden</a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid ""
+"Almost there: we sent you a confirmation link. Open it and we\n"
+"                    will email you as soon as the product is available."
+msgstr ""
+"Bijna klaar: we hebben u een bevestigingslink gestuurd. Open deze en we\n"
+"                    sturen u een e-mail zodra het product beschikbaar is."
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields.selection,name:website_sale_back_in_stock.selection__website_stock_notification__state__pending
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Awaiting confirmation"
+msgstr "Wacht op bevestiging"
+
+#. module: website_sale_back_in_stock
+#: model:ir.module.module,shortdesc:base.module_website_sale_back_in_stock
+msgid "Back in Stock Notifications"
+msgstr "Meldingen weer op voorraad"
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,name:website_sale_back_in_stock.mail_template_confirm
+msgid "Back in Stock: Confirm Subscription"
+msgstr "Weer op voorraad: aanmelding bevestigen"
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,name:website_sale_back_in_stock.mail_template_back_in_stock
+msgid "Back in Stock: Product Available"
+msgstr "Weer op voorraad: product beschikbaar"
+
+#. module: website_sale_back_in_stock
+#: model:ir.actions.server,name:website_sale_back_in_stock.ir_cron_restock_sweep_ir_actions_server
+msgid "Back in Stock: send the restock emails"
+msgstr "Weer op voorraad: de e-mails bij aanvulling versturen"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "Back to the product"
+msgstr "Terug naar het product"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model,name:website_sale_back_in_stock.model_website_stock_notification
+msgid "Back-in-Stock Notification"
+msgstr "Melding weer op voorraad"
+
+#. module: website_sale_back_in_stock
+#: model:ir.actions.act_window,name:website_sale_back_in_stock.action_website_stock_notification
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_res_config_settings__stock_notify_enabled
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website__stock_notify_enabled
+#: model:ir.ui.menu,name:website_sale_back_in_stock.menu_website_stock_notification
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.res_config_settings_view_form_stock_notify
+msgid "Back-in-Stock Waitlist"
+msgstr "Wachtlijst weer op voorraad"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields.selection,name:website_sale_back_in_stock.selection__website_stock_notification__state__cancelled
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model,name:website_sale_back_in_stock.model_res_config_settings
+msgid "Config Settings"
+msgstr "Instellingen"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_res_config_settings__stock_notify_double_optin
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website__stock_notify_double_optin
+msgid "Confirm Subscriptions by Email"
+msgstr "Aanmeldingen per e-mail bevestigen"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.res_config_settings_view_form_stock_notify
+msgid "Confirm by Email"
+msgstr "Per e-mail bevestigen"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_product_product__display_name
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website__display_name
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__email
+msgid "Email"
+msgstr "E-mail"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_res_config_settings__stock_notify_template_id
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website__stock_notify_template_id
+msgid ""
+"Email sent when a subscribed product is back in stock. Rendered in the "
+"subscriber's language. The confirmation email is the module template 'Back "
+"in Stock: Confirm Subscription'."
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid "Get an email when this product is back in stock"
+msgstr "Ontvang een e-mail wanneer dit product weer op voorraad is"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_product_product__id
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_res_config_settings__id
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website__id
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__id
+msgid "ID"
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "Keep my alert"
+msgstr "Mijn melding behouden"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__lang
+msgid "Lang"
+msgstr "Taal"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website_stock_notification__lang
+msgid ""
+"Language the visitor was browsing in. Both emails are rendered in it, "
+"whatever the language of the back office."
+msgstr "Taal waarin de bezoeker aan het surfen was. Beide e-mails worden hierin weergegeven, ongeacht de taal van de backoffice."
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__write_date
+msgid "Last Updated on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.res_config_settings_view_form_stock_notify
+msgid ""
+"Let visitors ask to be told when an out-of-stock product is available again"
+msgstr "Laat bezoekers vragen om een melding wanneer een product dat niet op voorraad is weer beschikbaar komt"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_res_config_settings__stock_notify_enabled
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website__stock_notify_enabled
+msgid ""
+"Let visitors leave their email on an out-of-stock product and be told when "
+"it is available again. Turning this off hides the form, refuses "
+"subscriptions and stops the restock sweep for this website; existing rows "
+"are kept."
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_form
+msgid "Links"
+msgstr "Links"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.actions.act_window,help:website_sale_back_in_stock.action_website_stock_notification
+msgid "No one is waiting yet"
+msgstr "Nog niemand staat te wachten"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "Nothing will be sent for"
+msgstr "Er wordt niets verzonden voor"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields.selection,name:website_sale_back_in_stock.selection__website_stock_notification__state__sent
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Notified"
+msgstr "Op de hoogte gebracht"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid "Notify me"
+msgstr "Houd mij op de hoogte"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "One more step"
+msgstr "Nog één stap"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website_stock_notification__token
+msgid "Opaque key used by the confirmation and the unsubscribe links."
+msgstr "Onleesbare sleutel die door de bevestigings- en afmeldlinks wordt gebruikt."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid ""
+"Open the confirmation link we sent you to start the\n"
+"                            alert for"
+msgstr ""
+"Open de bevestigingslink die we u hebben gestuurd om de\n"
+"                            melding te starten voor"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__partner_id
+msgid "Partner"
+msgstr "Relatie"
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,subject:website_sale_back_in_stock.mail_template_confirm
+msgid "Please confirm your back-in-stock alert"
+msgstr "Bevestig uw melding voor weer op voorraad"
+
+#. module: website_sale_back_in_stock
+#. odoo-python
+#: code:addons/website_sale_back_in_stock/models/stock_notification.py:0
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid "Please enter a valid email address."
+msgstr "Voer een geldig e-mailadres in."
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__product_tmpl_id
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Product"
+msgstr "Product"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model,name:website_sale_back_in_stock.model_product_product
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__product_id
+msgid "Product Variant"
+msgstr "Productvariant"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_res_config_settings__stock_notify_template_id
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website__stock_notify_template_id
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.res_config_settings_view_form_stock_notify
+msgid "Restock Email"
+msgstr "E-mail bij aanvulling"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_res_config_settings__stock_notify_double_optin
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website__stock_notify_double_optin
+msgid ""
+"Send a confirmation link before a subscriber is eligible for the restock "
+"email. Keeps typos and third-party addresses off the list. Turn it off to "
+"subscribe from the single form submit."
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__sent_at
+msgid "Sent At"
+msgstr "Verzonden op"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__state
+msgid "State"
+msgstr "Status"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Status"
+msgstr "Status"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields.selection,name:website_sale_back_in_stock.selection__website_stock_notification__state__confirmed
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+msgid "Subscribed"
+msgstr "Aangemeld"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "The alert for"
+msgstr "De melding voor"
+
+#. module: website_sale_back_in_stock
+#. odoo-python
+#: code:addons/website_sale_back_in_stock/models/stock_notification.py:0
+msgid "The email template is missing."
+msgstr "De e-mailsjabloon ontbreekt."
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,help:website_sale_back_in_stock.field_website_stock_notification__product_id
+msgid ""
+"The exact variant the visitor asked about. Restocking another variant of the"
+" same template does not notify this subscriber."
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.constraint,message:website_sale_back_in_stock.constraint_website_stock_notification_token_uniq
+msgid "The notification token must be unique."
+msgstr "Het meldingstoken moet uniek zijn."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "This alert was cancelled"
+msgstr "Deze melding is geannuleerd"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.constraint,message:website_sale_back_in_stock.constraint_website_stock_notification_product_email_website_uniq
+msgid ""
+"This email address is already subscribed to this product on this website."
+msgstr "Dit e-mailadres is al aangemeld voor dit product op deze website."
+
+#. module: website_sale_back_in_stock
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__token
+msgid "Token"
+msgstr "Token"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "Unsubscribe from this alert?"
+msgstr "Afmelden voor deze melding?"
+
+#. module: website_sale_back_in_stock
+#: model:ir.module.module,summary:base.module_website_sale_back_in_stock
+msgid ""
+"Variant-level back-in-stock waitlist with double opt-in, one email per "
+"subscriber and an unsubscribe link"
+msgstr "Wachtlijst op variantniveau met dubbele opt-in, één e-mail per abonnee en een afmeldlink"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.actions.act_window,help:website_sale_back_in_stock.action_website_stock_notification
+msgid ""
+"Visitors who ask to be told about an out-of-stock product appear\n"
+"                here. Entries are created from the product page, not by hand."
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.res_config_settings_view_form_stock_notify
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_search
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_tree
+msgid "Waitlist"
+msgstr "Wachtlijst"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.view_website_stock_notification_form
+msgid "Waitlist Entry"
+msgstr "Wachtlijstregel"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid ""
+"We only email you about this product. Every message carries\n"
+"                        an unsubscribe link."
+msgstr ""
+"We mailen u alleen over dit product. Elk bericht bevat\n"
+"                        een afmeldlink."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "We will email you as soon as"
+msgstr "We sturen u een e-mail zodra"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "We will not email you about"
+msgstr "We sturen u geen e-mail meer over"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "We will stop watching"
+msgstr "We stoppen met volgen"
+
+#. module: website_sale_back_in_stock
+#: model:ir.model,name:website_sale_back_in_stock.model_website
+#: model:ir.model.fields,field_description:website_sale_back_in_stock.field_website_stock_notification__website_id
+msgid "Website"
+msgstr "Website"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "Yes, unsubscribe"
+msgstr "Ja, afmelden"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "You are on the list"
+msgstr "U staat op de lijst"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid ""
+"You are on the list. We will email you as soon as the product is\n"
+"                    available again."
+msgstr ""
+"U staat op de lijst. We sturen u een e-mail zodra het product\n"
+"                    weer beschikbaar is."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "You are unsubscribed"
+msgstr "U bent afgemeld"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "You have already been notified"
+msgstr "U bent al op de hoogte gebracht"
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid ""
+"again. You can subscribe again from the product page at\n"
+"                            any time."
+msgstr ""
+"opnieuw. U kunt zich op elk moment opnieuw aanmelden via de\n"
+"                            productpagina."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "for you."
+msgstr "voor u."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "has already been sent."
+msgstr "is al verzonden."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.notification_page
+msgid "is available again."
+msgstr "is weer beschikbaar."
+
+#. module: website_sale_back_in_stock
+#: model_terms:ir.ui.view,arch_db:website_sale_back_in_stock.product_notify_form
+msgid "you@example.com"
+msgstr ""
+
+#. module: website_sale_back_in_stock
+#: model:mail.template,subject:website_sale_back_in_stock.mail_template_back_in_stock
+msgid "{{ object.product_id.display_name }} is back in stock"
+msgstr "{{ object.product_id.display_name }} is weer op voorraad"
