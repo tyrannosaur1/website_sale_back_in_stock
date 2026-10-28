@@ -16,6 +16,10 @@
         "views/website_views.xml",
         "views/templates.xml",
     ],
+    "images": [
+        "static/description/screenshot_1.png",
+        "static/description/screenshot_2.png",
+    ],
     "installable": True,
     "application": False,
     "assets": {
