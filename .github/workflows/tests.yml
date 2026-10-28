@@ -1,0 +1,58 @@
+name: tests
+
+on:
+  push:
+    branches: ["16.0", "17.0", "18.0", "19.0", "20.0"]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - odoo: "16.0"
+            pg: "13"
+          - odoo: "17.0"
+            pg: "15"
+          - odoo: "18.0"
+            pg: "15"
+          - odoo: "19.0"
+            pg: "16"
+          - odoo: "20.0"
+            pg: "16"
+    steps:
+      - name: Checkout the branch that matches the image
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.odoo }}
+
+      - name: Start PostgreSQL
+        run: |
+          docker network create ci
+          docker run -d --name db --network ci \
+            -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo -e POSTGRES_DB=postgres \
+            postgres:${{ matrix.pg }}
+          for i in $(seq 1 30); do
+            docker exec db pg_isready -U odoo -d postgres >/dev/null 2>&1 && break
+            sleep 2
+          done
+
+      - name: Install the module and run its tests
+        run: |
+          set -o pipefail
+          MODULE=$(basename "$GITHUB_WORKSPACE")
+          docker run --rm \
+            --network ci \
+            -v "$GITHUB_WORKSPACE:/mnt/extra-addons" \
+            --entrypoint /usr/bin/odoo "odoo:${{ matrix.odoo }}" \
+            --db_host=db --db_port=5432 --db_user=odoo --db_password=odoo \
+            --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons \
+            --without-demo=all --stop-after-init \
+            -d "test_${MODULE}" -i "$MODULE" --test-enable --test-tags "/$MODULE" 2>&1 \
+            | tee odoo.log
+
+      - name: Show the test summary
+        if: always()
+        run: grep -E "tests when loading|failed, " odoo.log || true
