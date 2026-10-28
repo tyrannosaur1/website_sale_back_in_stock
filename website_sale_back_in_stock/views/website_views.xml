@@ -1,47 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- 16.0 settings page is the div structure; <setting> is 17+. -->
+    <!-- 17.0 replaced the div layout of the settings page with <setting>. -->
     <record id="res_config_settings_view_form_stock_notify" model="ir.ui.view">
         <field name="name">res.config.settings.view.form.inherit.website.stock.notify</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="website.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='website']" position="inside">
-                <h2>Back-in-Stock Waitlist</h2>
-                <div class="row mt16 o_settings_container" id="stock_notify_setting">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
+            <xpath expr="//setting[@id='website_cookies_bar_setting']" position="after">
+                <setting id="stock_notify_setting" string="Back-in-Stock Waitlist"
+                         help="Let visitors ask to be told when an out-of-stock product is available again">
+                    <div class="content-group">
+                        <div class="row mt8">
+                            <label class="col-lg-3" string="Waitlist" for="stock_notify_enabled"/>
                             <field name="stock_notify_enabled"/>
                         </div>
-                        <div class="o_setting_right_pane">
-                            <label for="stock_notify_enabled" string="Waitlist"/>
-                            <div class="text-muted">
-                                Let visitors ask to be told when an out-of-stock product is available again
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
+                        <div class="row mt8">
+                            <label class="col-lg-3" string="Confirm by Email" for="stock_notify_double_optin"/>
                             <field name="stock_notify_double_optin"/>
                         </div>
-                        <div class="o_setting_right_pane">
-                            <label for="stock_notify_double_optin" string="Confirm by Email"/>
-                            <div class="text-muted">
-                                Send a confirmation link before a subscriber is eligible for the alert
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="stock_notify_template_id" string="Restock Email"/>
-                            <div class="text-muted">
-                                Template used when the product is back in stock
-                            </div>
+                        <div class="row mt8">
+                            <label class="col-lg-3" string="Restock Email" for="stock_notify_template_id"/>
                             <field name="stock_notify_template_id" options="{'no_create': True}"/>
                         </div>
                     </div>
-                </div>
+                </setting>
             </xpath>
         </field>
     </record>
